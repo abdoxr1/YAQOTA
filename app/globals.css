@@ -1,26 +1,309 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0b1713;
+  --foreground: #f5efe3;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* =========================
+   YAQOTA HERO ANIMATIONS
+========================= */
+
+@keyframes yaqotaFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-12px) scale(1.01);
+  }
+}
+
+@keyframes yaqotaGlow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.65;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes yaqotaReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.yaqota-hero-image {
+  animation: yaqotaFloat 10s ease-in-out infinite;
+  will-change: transform;
+}
+
+.yaqota-hero-glow {
+  animation: yaqotaGlow 8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.yaqota-hero-content {
+  animation: yaqotaReveal 1s ease-out both;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.yaqota-button {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.yaqota-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(217, 164, 65, 0.2);
+}
+
+/* =========================
+   MENU CARDS
+========================= */
+
+.yaqota-menu-card {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.yaqota-menu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+  border-color: rgba(217, 164, 65, 0.5);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+header nav a:hover {
+  color: #d9a441 !important;
+}
+
+/* =========================
+   YAQOTA RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  section#home {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+    gap: 40px !important;
+  }
+
+  section#home > div:first-child {
+    text-align: center;
+  }
+
+  section#home > div:first-child p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  section#home > div:first-child > div {
+    justify-content: center;
+  }
+
+  section#home h1 {
+    font-size: clamp(52px, 10vw, 80px) !important;
+  }
+
+  section#home > div:last-child {
+    min-height: 420px !important;
+  }
+
+  section#home img {
+    max-width: 540px !important;
+  }
+
+  section#story > div {
+    grid-template-columns: 1fr !important;
+    gap: 50px !important;
+  }
+
+  section#story > div > div:first-child {
+    text-align: center;
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 700px) {
+  header {
+    height: 70px !important;
+  }
+
+  header > div {
+    font-size: 22px !important;
+  }
+
+  section#home {
+    padding-left: 6% !important;
+    padding-right: 6% !important;
+  }
+
+  section#home h1 {
+    font-size: clamp(46px, 13vw, 68px) !important;
+  }
+
+  section#home > div:last-child {
+    min-height: 340px !important;
+  }
+
+  section#home img {
+    max-width: 450px !important;
+  }
+
+  section#menu,
+  section#story,
+  section#contact {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+  header {
+    padding: 0 5% !important;
+  }
+
+  header nav {
+    display: none !important;
+  }
+
+  section#home {
+    padding-top: 55px !important;
+    padding-bottom: 55px !important;
+    gap: 20px !important;
+  }
+
+  section#home h1 {
+    font-size: 48px !important;
+    line-height: 1.08 !important;
+  }
+
+  section#home > div:first-child > p:first-child {
+    font-size: 11px !important;
+    letter-spacing: 3px !important;
+  }
+
+  section#home > div:first-child > p:nth-of-type(2) {
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+  }
+
+  section#home > div:first-child > div {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  section#home > div:first-child > div a {
+    text-align: center;
+    width: 100%;
+  }
+
+  section#home > div:last-child {
+    min-height: 280px !important;
+  }
+
+  section#home img {
+    max-width: 100% !important;
+  }
+
+  .yaqota-hero-glow {
+    width: 260px !important;
+    height: 260px !important;
+    filter: blur(60px) !important;
+  }
+
+  section#menu,
+  section#story,
+  section#contact {
+    padding-left: 6% !important;
+    padding-right: 6% !important;
+  }
+
+  section#menu h2,
+  section#story h2,
+  section#contact h2 {
+    font-size: 44px !important;
+  }
+
+  footer {
+    text-align: center;
+    justify-content: center !important;
+  }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 380px) {
+  section#home h1 {
+    font-size: 42px !important;
+  }
+
+  section#home > div:last-child {
+    min-height: 240px !important;
+  }
+
+  section#menu h2,
+  section#story h2,
+  section#contact h2 {
+    font-size: 38px !important;
+  }
+}body {
+  background: red !important;
 }
