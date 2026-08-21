@@ -57,121 +57,221 @@ export default function Home() {
       </header>
 
       {/* HERO */}
-      <section
-        id="home"
+<section
+  id="home"
+  style={{
+    minHeight: "calc(100vh - 80px)",
+    position: "relative",
+    display: "grid",
+    gridTemplateColumns: "1.05fr 0.95fr",
+    alignItems: "center",
+    gap: "50px",
+    padding: "70px 7%",
+    overflow: "hidden",
+    isolation: "isolate",
+  }}
+>
+  {/* BACKGROUND GLOW */}
+  <div
+    style={{
+      position: "absolute",
+      width: "600px",
+      height: "600px",
+      right: "-180px",
+      top: "-120px",
+      borderRadius: "50%",
+      background: "rgba(217,164,65,0.07)",
+      filter: "blur(100px)",
+      pointerEvents: "none",
+      zIndex: -1,
+    }}
+  />
+
+  <div
+    style={{
+      position: "absolute",
+      width: "400px",
+      height: "400px",
+      left: "-180px",
+      bottom: "-150px",
+      borderRadius: "50%",
+      background: "rgba(217,164,65,0.04)",
+      filter: "blur(90px)",
+      pointerEvents: "none",
+      zIndex: -1,
+    }}
+  />
+
+  {/* HERO CONTENT */}
+  <div
+    className="yaqota-hero-content"
+    style={{
+      position: "relative",
+      zIndex: 2,
+    }}
+  >
+    <p
+      style={{
+        color: "#D9A441",
+        fontSize: "12px",
+        letterSpacing: "6px",
+        fontWeight: "700",
+        margin: "0 0 24px",
+      }}
+    >
+      YAQOTA COFFEE
+    </p>
+
+    <h1
+      style={{
+        fontSize: "clamp(52px, 7vw, 100px)",
+        lineHeight: "0.98",
+        margin: "0 0 30px",
+        fontWeight: "800",
+        letterSpacing: "-3px",
+      }}
+    >
+      قهوة تُحكى
+      <br />
+      <span style={{ color: "#D9A441" }}>وتُعاش</span>
+    </h1>
+
+    <p
+      style={{
+        maxWidth: "560px",
+        color: "#B8C1BA",
+        fontSize: "18px",
+        lineHeight: "1.9",
+        margin: "0 0 38px",
+      }}
+    >
+      تجربة قهوة مختلفة، صُنعت بعناية لتمنحك لحظات هادئة
+      ودافئة ومميزة في كل فنجان.
+    </p>
+
+    <div
+      style={{
+        display: "flex",
+        gap: "14px",
+        flexWrap: "wrap",
+      }}
+    >
+      <a
+        href="#menu"
+        className="yaqota-button"
         style={{
-          minHeight: "calc(100vh - 80px)",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          display: "inline-flex",
           alignItems: "center",
-          gap: "60px",
-          padding: "70px 7%",
-          overflow: "hidden",
+          justifyContent: "center",
+          minWidth: "170px",
+          padding: "16px 30px",
+          background: "#D9A441",
+          color: "#0B1713",
+          textDecoration: "none",
+          fontWeight: "800",
+          border: "1px solid #D9A441",
         }}
       >
-        {/* TEXT */}
-        <div className="yaqota-hero-content">
-          <p
-            style={{
-              color: "#D9A441",
-              fontSize: "13px",
-              letterSpacing: "5px",
-              marginBottom: "25px",
-            }}
-          >
-            YAQOTA COFFEE
-          </p>
+        اكتشف القائمة
+      </a>
 
-          <h1
-            style={{
-              fontSize: "clamp(50px, 7vw, 100px)",
-              lineHeight: "1",
-              margin: "0 0 30px",
-              fontWeight: "800",
-            }}
-          >
-            قهوة تُحكى
-            <br />
-            <span style={{ color: "#D9A441" }}>وتُعاش</span>
-          </h1>
+      <a
+        href="#story"
+        className="yaqota-button"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minWidth: "170px",
+          padding: "16px 30px",
+          background: "transparent",
+          color: "#D9A441",
+          textDecoration: "none",
+          fontWeight: "700",
+          border: "1px solid rgba(217,164,65,0.65)",
+        }}
+      >
+        اكتشف YAQOTA
+      </a>
+    </div>
+  </div>
 
-          <p
-            style={{
-              maxWidth: "570px",
-              color: "#B8C1BA",
-              fontSize: "18px",
-              lineHeight: "1.9",
-              marginBottom: "40px",
-            }}
-          >
-            تجربة قهوة مختلفة، صُنعت بعناية لتمنحك لحظات هادئة
-            ودافئة ومميزة في كل فنجان.
-          </p>
+  {/* HERO VISUAL */}
+  <div
+    style={{
+      position: "relative",
+      minHeight: "600px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    {/* GLOW */}
+    <div
+      className="yaqota-hero-glow"
+      style={{
+        position: "absolute",
+        width: "430px",
+        height: "430px",
+        borderRadius: "50%",
+        background: "rgba(217,164,65,0.14)",
+        filter: "blur(85px)",
+        pointerEvents: "none",
+      }}
+    />
 
-          <div
-            style={{
-              display: "flex",
-              gap: "15px",
-              flexWrap: "wrap",
-            }}
-          >
-            <a
-              href="#menu"
-              className="yaqota-button"
-              style={primaryButton}
-            >
-              اكتشف القائمة
-            </a>
+    {/* IMAGE FRAME */}
+    <div
+      style={{
+        position: "relative",
+        width: "min(100%, 620px)",
+        padding: "18px",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          inset: "0",
+          border: "1px solid rgba(217,164,65,0.25)",
+          transform: "translate(18px, 18px)",
+          pointerEvents: "none",
+        }}
+      />
 
-            <a
-              href="#story"
-              className="yaqota-button"
-              style={secondaryButton}
-            >
-              اكتشف YAQOTA
-            </a>
-          </div>
-        </div>
+      <img
+        className="yaqota-hero-image"
+        src="/yaqota-hero.png"
+        alt="YAQOTA Coffee"
+        style={{
+          position: "relative",
+          display: "block",
+          width: "100%",
+          height: "auto",
+          objectFit: "contain",
+          boxShadow: "0 40px 100px rgba(0,0,0,0.55)",
+        }}
+      />
+    </div>
 
-        {/* COFFEE IMAGE */}
-        <div
-          style={{
-            position: "relative",
-            minHeight: "560px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {/* Glow */}
-          <div
-            className="yaqota-hero-glow"
-            style={{
-              position: "absolute",
-              width: "420px",
-              height: "420px",
-              borderRadius: "50%",
-              background: "rgba(217,164,65,0.13)",
-              filter: "blur(80px)",
-            }}
-          />
-
-          <img
-            className="yaqota-hero-image"
-            src="/yaqota-hero.png"
-            alt="YAQOTA coffee"
-            style={{
-              position: "relative",
-              width: "100%",
-              maxWidth: "620px",
-              height: "auto",
-              objectFit: "contain",
-              borderRadius: "4px",
-              boxShadow: "0 40px 100px rgba(0,0,0,0.55)",
-            }}
-          />
-        </div>
-      </section>
+    {/* DECORATIVE LABEL */}
+    <div
+      style={{
+        position: "absolute",
+        bottom: "55px",
+        right: "5%",
+        padding: "10px 16px",
+        border: "1px solid rgba(217,164,65,0.35)",
+        background: "rgba(11,23,19,0.8)",
+        backdropFilter: "blur(8px)",
+        color: "#D9A441",
+        fontSize: "11px",
+        letterSpacing: "3px",
+      }}
+    >
+      EST. 2026
+    </div>
+  </div>
+</section>
 
       {/* MENU */}
       <section
