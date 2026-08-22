@@ -1,4 +1,29 @@
+"use client";
+
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
 export default function Home() {
+  const [mousePosition, setMousePosition] = useState({
+    x: 0,
+    y: 0,
+  });
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      const x = event.clientX / window.innerWidth - 0.5;
+      const y = event.clientY / window.innerHeight - 0.5;
+
+      setMousePosition({ x, y });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
   return (
     <main
       style={{
@@ -6,465 +31,323 @@ export default function Home() {
         color: "#F5EFE3",
         fontFamily: "Arial, sans-serif",
         direction: "rtl",
+        minHeight: "100vh",
+        overflow: "hidden",
       }}
     >
-      {/* NAVBAR */}
-      <header
-        style={{
-          height: "80px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "0 7%",
-          borderBottom: "1px solid rgba(245,239,227,0.12)",
-          position: "sticky",
-          top: 0,
-          zIndex: 20,
-          background: "#0B1713",
-        }}
-      >
-        <div
-          style={{
-            fontSize: "26px",
-            fontWeight: "800",
-            letterSpacing: "3px",
-            color: "#D9A441",
-          }}
-        >
-          YAQOTA
-        </div>
+      {/* ================= NAVBAR ================= */}
 
-        <nav
-          style={{
-            display: "flex",
-            gap: "30px",
-            fontSize: "15px",
-          }}
-        >
-          <a href="#home" style={navStyle}>
+      <header className="yaqota-navbar">
+        <a href="#home" className="yaqota-logo">
+          YAQOTA
+        </a>
+
+        <nav>
+          <a href="#home" className="yaqota-nav-link">
             الرئيسية
           </a>
-          <a href="#menu" style={navStyle}>
+
+          <a href="#menu" className="yaqota-nav-link">
             القائمة
           </a>
-          <a href="#story" style={navStyle}>
+
+          <a href="#story" className="yaqota-nav-link">
             قصتنا
           </a>
-          <a href="#contact" style={navStyle}>
+
+          <a
+            href="#contact"
+            className="yaqota-nav-link yaqota-nav-cta"
+          >
             تواصل معنا
           </a>
         </nav>
       </header>
 
-      {/* HERO */}
-<section
-  id="home"
-  style={{
-    minHeight: "calc(100vh - 80px)",
-    position: "relative",
-    display: "grid",
-    gridTemplateColumns: "1.05fr 0.95fr",
-    alignItems: "center",
-    gap: "50px",
-    padding: "70px 7%",
-    overflow: "hidden",
-    isolation: "isolate",
-  }}
->
-  {/* BACKGROUND GLOW */}
-  <div
-    style={{
-      position: "absolute",
-      width: "600px",
-      height: "600px",
-      right: "-180px",
-      top: "-120px",
-      borderRadius: "50%",
-      background: "rgba(217,164,65,0.07)",
-      filter: "blur(100px)",
-      pointerEvents: "none",
-      zIndex: -1,
-    }}
-  />
+      {/* ================= HERO ================= */}
 
-  <div
-    style={{
-      position: "absolute",
-      width: "400px",
-      height: "400px",
-      left: "-180px",
-      bottom: "-150px",
-      borderRadius: "50%",
-      background: "rgba(217,164,65,0.04)",
-      filter: "blur(90px)",
-      pointerEvents: "none",
-      zIndex: -1,
-    }}
-  />
+      <section id="home" className="yaqota-hero">
+        {/* Background */}
 
-  {/* HERO CONTENT */}
-  <div
-    className="yaqota-hero-content"
-    style={{
-      position: "relative",
-      zIndex: 2,
-    }}
-  >
-    <p
-      style={{
-        color: "#D9A441",
-        fontSize: "12px",
-        letterSpacing: "6px",
-        fontWeight: "700",
-        margin: "0 0 24px",
-      }}
-    >
-      YAQOTA COFFEE
-    </p>
+        <div className="yaqota-hero-glow yaqota-hero-glow-one" />
 
-    <h1
-      style={{
-        fontSize: "clamp(52px, 7vw, 100px)",
-        lineHeight: "0.98",
-        margin: "0 0 30px",
-        fontWeight: "800",
-        letterSpacing: "-3px",
-      }}
-    >
-      قهوة تُحكى
-      <br />
-      <span style={{ color: "#D9A441" }}>وتُعاش</span>
-    </h1>
+        <div className="yaqota-hero-glow yaqota-hero-glow-two" />
 
-    <p
-      style={{
-        maxWidth: "560px",
-        color: "#B8C1BA",
-        fontSize: "18px",
-        lineHeight: "1.9",
-        margin: "0 0 38px",
-      }}
-    >
-      تجربة قهوة مختلفة، صُنعت بعناية لتمنحك لحظات هادئة
-      ودافئة ومميزة في كل فنجان.
-    </p>
+        {/* ================= HERO CONTENT ================= */}
 
-    <div
-      style={{
-        display: "flex",
-        gap: "14px",
-        flexWrap: "wrap",
-      }}
-    >
-      <a
-        href="#menu"
-        className="yaqota-button"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minWidth: "170px",
-          padding: "16px 30px",
-          background: "#D9A441",
-          color: "#0B1713",
-          textDecoration: "none",
-          fontWeight: "800",
-          border: "1px solid #D9A441",
-        }}
-      >
-        اكتشف القائمة
-      </a>
+        <div className="yaqota-hero-content yaqota-hero-enter">
+          <p className="yaqota-eyebrow">YAQOTA COFFEE</p>
 
-      <a
-        href="#story"
-        className="yaqota-button"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minWidth: "170px",
-          padding: "16px 30px",
-          background: "transparent",
-          color: "#D9A441",
-          textDecoration: "none",
-          fontWeight: "700",
-          border: "1px solid rgba(217,164,65,0.65)",
-        }}
-      >
-        اكتشف YAQOTA
-      </a>
-    </div>
-  </div>
+          <h1>
+            قهوة تُحكى
+            <br />
+            <span>وتُعاش</span>
+          </h1>
 
-  {/* HERO VISUAL */}
-  <div
-    style={{
-      position: "relative",
-      minHeight: "600px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }}
-  >
-    {/* GLOW */}
-    <div
-      className="yaqota-hero-glow"
-      style={{
-        position: "absolute",
-        width: "430px",
-        height: "430px",
-        borderRadius: "50%",
-        background: "rgba(217,164,65,0.14)",
-        filter: "blur(85px)",
-        pointerEvents: "none",
-      }}
-    />
+          <p className="yaqota-hero-description">
+            تجربة قهوة مختلفة، صُنعت بعناية لتمنحك لحظات هادئة
+            ودافئة ومميزة في كل فنجان.
+          </p>
 
-    {/* IMAGE FRAME */}
-    <div
-      style={{
-        position: "relative",
-        width: "min(100%, 620px)",
-        padding: "18px",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          inset: "0",
-          border: "1px solid rgba(217,164,65,0.25)",
-          transform: "translate(18px, 18px)",
-          pointerEvents: "none",
-        }}
-      />
+          <div className="yaqota-hero-actions">
+            <a
+              href="#menu"
+              className="yaqota-primary-button"
+            >
+              اكتشف القائمة
+            </a>
 
-      <img
-        className="yaqota-hero-image"
-        src="/yaqota-hero.png"
-        alt="YAQOTA Coffee"
-        style={{
-          position: "relative",
-          display: "block",
-          width: "100%",
-          height: "auto",
-          objectFit: "contain",
-          boxShadow: "0 40px 100px rgba(0,0,0,0.55)",
-        }}
-      />
-    </div>
+            <a
+              href="#story"
+              className="yaqota-secondary-button"
+            >
+              اكتشف YAQOTA
+            </a>
+          </div>
+        </div>
 
-    {/* DECORATIVE LABEL */}
-    <div
-      style={{
-        position: "absolute",
-        bottom: "55px",
-        right: "5%",
-        padding: "10px 16px",
-        border: "1px solid rgba(217,164,65,0.35)",
-        background: "rgba(11,23,19,0.8)",
-        backdropFilter: "blur(8px)",
-        color: "#D9A441",
-        fontSize: "11px",
-        letterSpacing: "3px",
-      }}
-    >
-      EST. 2026
-    </div>
-  </div>
-</section>
+        {/* ================= HERO VISUAL ================= */}
 
-      {/* MENU */}
-      <section
-        id="menu"
-        style={{
-          padding: "120px 7%",
-          background: "#F5EFE3",
-          color: "#0B1713",
-        }}
-      >
-        <div style={{ maxWidth: "1100px", margin: "auto" }}>
-          <p style={goldLabel}>OUR MENU</p>
+        <div className="yaqota-hero-visual yaqota-hero-visual-enter">
+          {/* Ambient light */}
 
-          <h2 style={sectionTitle}>القائمة</h2>
+          <div className="yaqota-image-aura" />
 
-          <div style={menuGrid}>
-            <MenuItem
-              name="Espresso"
-              description="قهوة مركزة وغنية بطعم عميق"
-              price="18 DH"
+          {/* Decorative frame */}
+
+          <div
+            className="yaqota-image-frame"
+            style={{
+              transform: `
+                translate(
+                  ${mousePosition.x * 12}px,
+                  ${mousePosition.y * 12}px
+                )
+              `,
+            }}
+          />
+
+          {/* Image */}
+
+          <div
+            className="yaqota-image-wrapper"
+            style={{
+              transform: `
+                translate3d(
+                  ${mousePosition.x * 5}px,
+                  ${mousePosition.y * 5}px,
+                  0
+                )
+              `,
+              transition:
+                "transform 0.15s ease-out",
+            }}
+          >
+            <Image
+              src="/yaqota-hero.png"
+              alt="YAQOTA Coffee"
+              width={900}
+              height={900}
+              priority
+              className="yaqota-hero-image"
             />
+          </div>
 
-            <MenuItem
-              name="Cappuccino"
-              description="إسبريسو مع حليب ورغوة ناعمة"
-              price="25 DH"
-            />
+          {/* EST label */}
 
-            <MenuItem
-              name="Latte"
-              description="قهوة ناعمة ومتوازنة بالحليب"
-              price="27 DH"
-            />
+          <div className="yaqota-est-label">
+            <span>EST.</span>
+            <strong>2026</strong>
+          </div>
 
-            <MenuItem
-              name="Iced Coffee"
-              description="قهوة باردة ومنعشة"
-              price="28 DH"
-            />
+          {/* Number */}
 
-            <MenuItem
-              name="Mocha"
-              description="قهوة، شوكولاتة وحليب"
-              price="30 DH"
-            />
-
-            <MenuItem
-              name="YAQOTA Signature"
-              description="خلطة YAQOTA الخاصة"
-              price="35 DH"
-            />
+          <div className="yaqota-hero-number">
+            01
           </div>
         </div>
       </section>
 
-      {/* STORY */}
-      <section
-        id="story"
-        style={{
-          padding: "130px 7%",
-          background: "#0B1713",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1100px",
-            margin: "auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "80px",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <p style={goldLabel}>OUR STORY</p>
+      {/* ================= MENU ================= */}
 
-            <h2 style={sectionTitleLight}>
-              أكثر من
-              <br />
-              <span style={{ color: "#D9A441" }}>مجرد قهوة.</span>
-            </h2>
+      <section id="menu" className="yaqota-menu">
+        <div className="yaqota-section-container">
+          <div className="yaqota-section-heading">
+            <div>
+              <p className="yaqota-eyebrow-dark">
+                THE YAQOTA MENU
+              </p>
 
-            <p
-              style={{
-                color: "#B8C1BA",
-                fontSize: "17px",
-                lineHeight: "2",
-              }}
-            >
-              في YAQOTA نؤمن أن القهوة ليست مجرد مشروب.
-              إنها لحظة، إحساس، وذكريات صغيرة نصنعها كل يوم.
-              اخترنا كل تفصيل بعناية لنقدم تجربة بسيطة ولكن
-              مختلفة.
+              <h2>
+                القائمة
+                <br />
+                <span>ببساطة.</span>
+              </h2>
+            </div>
+
+            <p className="yaqota-section-description">
+              اختيارات مختارة بعناية، من الإسبريسو الكلاسيكي
+              إلى خلطات YAQOTA الخاصة. كل فنجان له شخصيته.
             </p>
           </div>
 
-          <div
-            style={{
-              minHeight: "420px",
-              border: "1px solid rgba(217,164,65,0.35)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <div
-              style={{
-                width: "220px",
-                height: "220px",
-                borderRadius: "50%",
-                border: "1px solid #D9A441",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#D9A441",
-                fontSize: "22px",
-                letterSpacing: "4px",
-              }}
-            >
-              YAQOTA
+          {/* Featured */}
+
+          <div className="yaqota-featured">
+            <div className="yaqota-featured-visual">
+              <div className="yaqota-coffee-circle">
+                <div className="yaqota-coffee-circle-inner">
+                  YAQOTA
+                </div>
+              </div>
+
+              <span className="yaqota-featured-label">
+                SIGNATURE BLEND
+              </span>
             </div>
+
+            <div className="yaqota-featured-content">
+              <p className="yaqota-item-number">
+                01 — SIGNATURE
+              </p>
+
+              <h3>
+                YAQOTA
+                <br />
+                Signature
+              </h3>
+
+              <p>
+                خلطة YAQOTA الخاصة، بطابع غني ومتوازن
+                ونهاية ناعمة تبقى معك بعد آخر رشفة.
+              </p>
+
+              <div className="yaqota-price-row">
+                <strong>35 DH</strong>
+
+                <span>OUR SPECIALTY</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Cards */}
+
+          <div className="yaqota-menu-grid">
+            <MenuCard
+              number="02"
+              name="Espresso"
+              description="مركز، غني، وبنهاية عميقة."
+              price="18 DH"
+            />
+
+            <MenuCard
+              number="03"
+              name="Cappuccino"
+              description="إسبريسو، حليب ورغوة ناعمة."
+              price="25 DH"
+            />
+
+            <MenuCard
+              number="04"
+              name="Latte"
+              description="متوازن، ناعم وكريمي."
+              price="27 DH"
+            />
+
+            <MenuCard
+              number="05"
+              name="Iced Coffee"
+              description="بارد، منعش ومثالي للأيام الطويلة."
+              price="28 DH"
+            />
+
+            <MenuCard
+              number="06"
+              name="Mocha"
+              description="قهوة وشوكولاتة في توازن مثالي."
+              price="30 DH"
+            />
+
+            <MenuCard
+              number="07"
+              name="Cold Brew"
+              description="استخلاص بطيء بطعم ناعم وعميق."
+              price="30 DH"
+            />
           </div>
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section
-        id="contact"
-        style={{
-          padding: "110px 7%",
-          background: "#D9A441",
-          color: "#0B1713",
-          textAlign: "center",
-        }}
-      >
-        <p style={darkLabel}>VISIT YAQOTA</p>
+      {/* ================= STORY ================= */}
 
-        <h2
-          style={{
-            fontSize: "clamp(40px, 6vw, 70px)",
-            margin: "0 0 25px",
-          }}
-        >
-          مستعدين للقهوة؟
-        </h2>
+      <section id="story" className="yaqota-story">
+        <div className="yaqota-story-container">
+          <div className="yaqota-story-content">
+            <p className="yaqota-eyebrow">
+              OUR STORY
+            </p>
 
-        <p style={{ fontSize: "18px", marginBottom: "35px" }}>
-          تعال واكتشف تجربة YAQOTA بنفسك.
+            <h2>
+              أكثر من
+              <br />
+              <span>مجرد قهوة.</span>
+            </h2>
+
+            <p>
+              في YAQOTA نؤمن أن القهوة ليست مجرد مشروب.
+              إنها لحظة، إحساس، وذكريات صغيرة نصنعها كل يوم.
+            </p>
+
+            <p>
+              اخترنا كل تفصيل بعناية لنقدم تجربة بسيطة،
+              راقية ومختلفة.
+            </p>
+          </div>
+
+          <div className="yaqota-story-visual">
+            <div className="yaqota-story-glow" />
+
+            <div className="yaqota-story-circle">
+              <div>YAQOTA</div>
+            </div>
+
+            <span className="story-top-label">
+              CRAFTED WITH CARE
+            </span>
+
+            <span className="story-bottom-label">
+              EST. 2026
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= CONTACT ================= */}
+
+      <section id="contact" className="yaqota-contact">
+        <p>VISIT YAQOTA</p>
+
+        <h2>مستعدين للقهوة؟</h2>
+
+        <p className="contact-description">
+          تعال واكتشف تجربة YAQOTA بنفسك. خذ لحظتك،
+          وخلي القهوة تحكي.
         </p>
 
         <a
           href="mailto:hello@yaqota.ma"
-          className="yaqota-button"
-          style={{
-            display: "inline-block",
-            padding: "16px 35px",
-            background: "#0B1713",
-            color: "#F5EFE3",
-            textDecoration: "none",
-            fontWeight: "700",
-          }}
+          className="yaqota-contact-button"
         >
           تواصل معنا
         </a>
       </section>
 
-      {/* FOOTER */}
-      <footer
-        style={{
-          padding: "35px 7%",
-          background: "#07100D",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: "15px",
-        }}
-      >
-        <strong
-          style={{
-            color: "#D9A441",
-            letterSpacing: "3px",
-          }}
-        >
-          YAQOTA
-        </strong>
+      {/* ================= FOOTER ================= */}
 
-        <span
-          style={{
-            color: "#7F8982",
-            fontSize: "13px",
-          }}
-        >
+      <footer className="yaqota-footer">
+        <strong>YAQOTA</strong>
+
+        <span>
           © 2026 YAQOTA Coffee. All rights reserved.
         </span>
       </footer>
@@ -472,107 +355,38 @@ export default function Home() {
   );
 }
 
-function MenuItem({
+/* =========================================================
+   MENU CARD
+   ========================================================= */
+
+function MenuCard({
+  number,
   name,
   description,
   price,
 }: {
+  number: string;
   name: string;
   description: string;
   price: string;
 }) {
   return (
-    <article
-      className="yaqota-menu-card"
-      style={{
-        padding: "30px",
-        border: "1px solid rgba(11,23,19,0.15)",
-        background: "#EEE7D8",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          gap: "15px",
-          marginBottom: "15px",
-        }}
-      >
-        <h3
-          style={{
-            margin: 0,
-            fontSize: "22px",
-          }}
-        >
-          {name}
-        </h3>
+    <article className="yaqota-menu-card">
+      <div>
+        <span className="card-number">
+          {number}
+        </span>
 
-        <strong style={{ color: "#9B7225" }}>
-          {price}
-        </strong>
+        <h3>{name}</h3>
+
+        <p>{description}</p>
       </div>
 
-      <p
-        style={{
-          margin: 0,
-          color: "#5D665F",
-          lineHeight: "1.8",
-        }}
-      >
-        {description}
-      </p>
+      <div className="card-footer">
+        <strong>{price}</strong>
+
+        <span>YAQOTA</span>
+      </div>
     </article>
   );
 }
-
-const navStyle = {
-  color: "#F5EFE3",
-  textDecoration: "none",
-};
-
-const primaryButton = {
-  background: "#D9A441",
-  color: "#0B1713",
-  padding: "16px 32px",
-  textDecoration: "none",
-  fontWeight: "700",
-};
-
-const secondaryButton = {
-  border: "1px solid #D9A441",
-  color: "#D9A441",
-  padding: "16px 32px",
-  textDecoration: "none",
-  fontWeight: "700",
-};
-
-const goldLabel = {
-  color: "#9B7225",
-  letterSpacing: "4px",
-  fontSize: "13px",
-  marginBottom: "15px",
-};
-
-const darkLabel = {
-  letterSpacing: "4px",
-  fontSize: "13px",
-  marginBottom: "15px",
-};
-
-const sectionTitle = {
-  fontSize: "clamp(40px, 6vw, 70px)",
-  margin: "0 0 60px",
-  fontWeight: "800",
-};
-
-const sectionTitleLight = {
-  fontSize: "clamp(40px, 6vw, 70px)",
-  lineHeight: "1.1",
-  margin: "20px 0 30px",
-};
-
-const menuGrid = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-  gap: "20px",
-};
